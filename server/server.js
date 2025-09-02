@@ -3,6 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
+console.log("🚀 PORT:", process.env.PORT);
+console.log("🚀 MONGO_URI:", process.env.MONGO_URI);
 
 const user = require('../models/user'); // correct path since server.js is in server/
 
