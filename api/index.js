@@ -1,14 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const user=require('./models/user');
+const user=require('../models/user');
 const cors = require('cors');
+require('dotenv').config();
 const app=express();
 app.use(express.json());
 app.use(cors());
 // MongoDB connection
-mongoose.connect("mongodb+srv://kamla:JBAh4uwZalTgoY2f@cluster0.dqcmszp.mongodb.net/mongoPractice?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB connected"))
   .catch(err => console.error("❌ MongoDB connection error:", err));
+
 app.get('/' ,(req, res)=>{
     res.send('helloworld');
 })
@@ -79,6 +81,6 @@ app.put('/user/:id', async (req, res) => {
   }
 });
 
-app.listen(3000,()=>{
+app.listen(process.env.PORT,()=>{
     console.log('server is running on port 3000');
 })
